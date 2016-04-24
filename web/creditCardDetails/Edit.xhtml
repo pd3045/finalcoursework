@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCreditCardDetailsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCreditCardDetailsLabel_cardReferenceNumber}" for="cardReferenceNumber" />
+                    <h:inputText id="cardReferenceNumber" value="#{creditCardDetailsController.selected.cardReferenceNumber}" title="#{bundle.EditCreditCardDetailsTitle_cardReferenceNumber}" required="true" requiredMessage="#{bundle.EditCreditCardDetailsRequiredMessage_cardReferenceNumber}"/>
+                    <h:outputLabel value="#{bundle.EditCreditCardDetailsLabel_cardNumber}" for="cardNumber" />
+                    <h:inputText id="cardNumber" value="#{creditCardDetailsController.selected.cardNumber}" title="#{bundle.EditCreditCardDetailsTitle_cardNumber}" />
+                    <h:outputLabel value="#{bundle.EditCreditCardDetailsLabel_expiryDate}" for="expiryDate" />
+                    <h:inputText id="expiryDate" value="#{creditCardDetailsController.selected.expiryDate}" title="#{bundle.EditCreditCardDetailsTitle_expiryDate}" />
+                    <h:outputLabel value="#{bundle.EditCreditCardDetailsLabel_valid}" for="valid" />
+                    <h:inputText id="valid" value="#{creditCardDetailsController.selected.valid}" title="#{bundle.EditCreditCardDetailsTitle_valid}" />
+                </h:panelGrid>
+                <h:commandLink action="#{creditCardDetailsController.update}" value="#{bundle.EditCreditCardDetailsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCreditCardDetailsViewLink}"/>
+                <br />
+                <h:commandLink action="#{creditCardDetailsController.prepareList}" value="#{bundle.EditCreditCardDetailsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCreditCardDetailsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

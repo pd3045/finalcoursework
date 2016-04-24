@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBookingTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBookingLabel_bookingId}" for="bookingId" />
+                    <h:inputText id="bookingId" value="#{bookingController.selected.bookingId}" title="#{bundle.EditBookingTitle_bookingId}" required="true" requiredMessage="#{bundle.EditBookingRequiredMessage_bookingId}"/>
+                    <h:outputLabel value="#{bundle.EditBookingLabel_dateBooked}" for="dateBooked" />
+                    <h:inputText id="dateBooked" value="#{bookingController.selected.dateBooked}" title="#{bundle.EditBookingTitle_dateBooked}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditBookingLabel_numberTravelling}" for="numberTravelling" />
+                    <h:inputText id="numberTravelling" value="#{bookingController.selected.numberTravelling}" title="#{bundle.EditBookingTitle_numberTravelling}" />
+                    <h:outputLabel value="#{bundle.EditBookingLabel_totalPrice}" for="totalPrice" />
+                    <h:inputText id="totalPrice" value="#{bookingController.selected.totalPrice}" title="#{bundle.EditBookingTitle_totalPrice}" />
+                    <h:outputLabel value="#{bundle.EditBookingLabel_flightNumber}" for="flightNumber" />
+                    <h:selectOneMenu id="flightNumber" value="#{bookingController.selected.flightNumber}" title="#{bundle.EditBookingTitle_flightNumber}" >
+                        <f:selectItems value="#{flightsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBookingLabel_flightClass}" for="flightClass" />
+                    <h:selectOneMenu id="flightClass" value="#{bookingController.selected.flightClass}" title="#{bundle.EditBookingTitle_flightClass}" >
+                        <f:selectItems value="#{flightClassController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBookingLabel_flightType}" for="flightType" />
+                    <h:selectOneMenu id="flightType" value="#{bookingController.selected.flightType}" title="#{bundle.EditBookingTitle_flightType}" >
+                        <f:selectItems value="#{flightTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBookingLabel_itinaryNumber}" for="itinaryNumber" />
+                    <h:selectOneMenu id="itinaryNumber" value="#{bookingController.selected.itinaryNumber}" title="#{bundle.EditBookingTitle_itinaryNumber}" >
+                        <f:selectItems value="#{itinaryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBookingLabel_passangerCode}" for="passangerCode" />
+                    <h:selectOneMenu id="passangerCode" value="#{bookingController.selected.passangerCode}" title="#{bundle.EditBookingTitle_passangerCode}" >
+                        <f:selectItems value="#{passangerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditBookingLabel_ticketNumber}" for="ticketNumber" />
+                    <h:selectOneMenu id="ticketNumber" value="#{bookingController.selected.ticketNumber}" title="#{bundle.EditBookingTitle_ticketNumber}" >
+                        <f:selectItems value="#{ticketController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{bookingController.update}" value="#{bundle.EditBookingSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditBookingViewLink}"/>
+                <br />
+                <h:commandLink action="#{bookingController.prepareList}" value="#{bundle.EditBookingShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditBookingIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

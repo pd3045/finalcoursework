@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCreditCardDetailsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCreditCardDetailsEmpty}" rendered="#{creditCardDetailsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{creditCardDetailsController.items.rowCount > 0}">
+                    <h:outputText value="#{creditCardDetailsController.pagination.pageFirstItem + 1}..#{creditCardDetailsController.pagination.pageLastItem + 1}/#{creditCardDetailsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{creditCardDetailsController.previous}" value="#{bundle.Previous} #{creditCardDetailsController.pagination.pageSize}" rendered="#{creditCardDetailsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{creditCardDetailsController.next}" value="#{bundle.Next} #{creditCardDetailsController.pagination.pageSize}" rendered="#{creditCardDetailsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{creditCardDetailsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCreditCardDetailsTitle_cardReferenceNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cardReferenceNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCreditCardDetailsTitle_cardNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cardNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCreditCardDetailsTitle_expiryDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.expiryDate}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCreditCardDetailsTitle_valid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{creditCardDetailsController.prepareView}" value="#{bundle.ListCreditCardDetailsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{creditCardDetailsController.prepareEdit}" value="#{bundle.ListCreditCardDetailsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{creditCardDetailsController.destroy}" value="#{bundle.ListCreditCardDetailsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{creditCardDetailsController.prepareCreate}" value="#{bundle.ListCreditCardDetailsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCreditCardDetailsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

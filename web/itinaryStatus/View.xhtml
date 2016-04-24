@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewItinaryStatusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewItinaryStatusLabel_itinaryStatus}"/>
+                    <h:outputText value="#{itinaryStatusController.selected.itinaryStatus}" title="#{bundle.ViewItinaryStatusTitle_itinaryStatus}"/>
+                    <h:outputText value="#{bundle.ViewItinaryStatusLabel_itinaryStatusDescription}"/>
+                    <h:outputText value="#{itinaryStatusController.selected.itinaryStatusDescription}" title="#{bundle.ViewItinaryStatusTitle_itinaryStatusDescription}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{itinaryStatusController.destroyAndView}" value="#{bundle.ViewItinaryStatusDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewItinaryStatusEditLink}"/>
+                <br />
+                <h:commandLink action="#{itinaryStatusController.prepareCreate}" value="#{bundle.ViewItinaryStatusCreateLink}" />
+                <br />
+                <h:commandLink action="#{itinaryStatusController.prepareList}" value="#{bundle.ViewItinaryStatusShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewItinaryStatusIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

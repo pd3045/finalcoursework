@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAirportLocationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAirportLocationLabel_airportCode}" for="airportCode" />
+                    <h:inputText id="airportCode" value="#{airportLocationController.selected.airportCode}" title="#{bundle.CreateAirportLocationTitle_airportCode}" required="true" requiredMessage="#{bundle.CreateAirportLocationRequiredMessage_airportCode}"/>
+                    <h:outputLabel value="#{bundle.CreateAirportLocationLabel_airportName}" for="airportName" />
+                    <h:inputText id="airportName" value="#{airportLocationController.selected.airportName}" title="#{bundle.CreateAirportLocationTitle_airportName}" />
+                    <h:outputLabel value="#{bundle.CreateAirportLocationLabel_airportCity}" for="airportCity" />
+                    <h:inputText id="airportCity" value="#{airportLocationController.selected.airportCity}" title="#{bundle.CreateAirportLocationTitle_airportCity}" />
+                    <h:outputLabel value="#{bundle.CreateAirportLocationLabel_airportCountry}" for="airportCountry" />
+                    <h:inputText id="airportCountry" value="#{airportLocationController.selected.airportCountry}" title="#{bundle.CreateAirportLocationTitle_airportCountry}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{airportLocationController.create}" value="#{bundle.CreateAirportLocationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{airportLocationController.prepareList}" value="#{bundle.CreateAirportLocationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAirportLocationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFlightsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFlightsLabel_flightNumber}"/>
+                    <h:outputText value="#{flightsController.selected.flightNumber}" title="#{bundle.ViewFlightsTitle_flightNumber}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_departureDay}"/>
+                    <h:outputText value="#{flightsController.selected.departureDay}" title="#{bundle.ViewFlightsTitle_departureDay}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_departureTime}"/>
+                    <h:outputText value="#{flightsController.selected.departureTime}" title="#{bundle.ViewFlightsTitle_departureTime}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_arrivalDate}"/>
+                    <h:outputText value="#{flightsController.selected.arrivalDate}" title="#{bundle.ViewFlightsTitle_arrivalDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_arrivalTime}"/>
+                    <h:outputText value="#{flightsController.selected.arrivalTime}" title="#{bundle.ViewFlightsTitle_arrivalTime}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_economySeatsAvailable}"/>
+                    <h:outputText value="#{flightsController.selected.economySeatsAvailable}" title="#{bundle.ViewFlightsTitle_economySeatsAvailable}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_businessSeatsAvailable}"/>
+                    <h:outputText value="#{flightsController.selected.businessSeatsAvailable}" title="#{bundle.ViewFlightsTitle_businessSeatsAvailable}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_economyPriceOneway}"/>
+                    <h:outputText value="#{flightsController.selected.economyPriceOneway}" title="#{bundle.ViewFlightsTitle_economyPriceOneway}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_economyPriceReturn}"/>
+                    <h:outputText value="#{flightsController.selected.economyPriceReturn}" title="#{bundle.ViewFlightsTitle_economyPriceReturn}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_businessPriceOneway}"/>
+                    <h:outputText value="#{flightsController.selected.businessPriceOneway}" title="#{bundle.ViewFlightsTitle_businessPriceOneway}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_businessPriceReturn}"/>
+                    <h:outputText value="#{flightsController.selected.businessPriceReturn}" title="#{bundle.ViewFlightsTitle_businessPriceReturn}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_routeId}"/>
+                    <h:outputText value="#{flightsController.selected.routeId}" title="#{bundle.ViewFlightsTitle_routeId}"/>
+                    <h:outputText value="#{bundle.ViewFlightsLabel_flightStatus}"/>
+                    <h:outputText value="#{flightsController.selected.flightStatus}" title="#{bundle.ViewFlightsTitle_flightStatus}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{flightsController.destroyAndView}" value="#{bundle.ViewFlightsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFlightsEditLink}"/>
+                <br />
+                <h:commandLink action="#{flightsController.prepareCreate}" value="#{bundle.ViewFlightsCreateLink}" />
+                <br />
+                <h:commandLink action="#{flightsController.prepareList}" value="#{bundle.ViewFlightsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFlightsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

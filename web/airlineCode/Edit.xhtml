@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAirlineCodeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAirlineCodeLabel_airlineCode}" for="airlineCode" />
+                    <h:inputText id="airlineCode" value="#{airlineCodeController.selected.airlineCode}" title="#{bundle.EditAirlineCodeTitle_airlineCode}" required="true" requiredMessage="#{bundle.EditAirlineCodeRequiredMessage_airlineCode}"/>
+                    <h:outputLabel value="#{bundle.EditAirlineCodeLabel_airlineName}" for="airlineName" />
+                    <h:inputText id="airlineName" value="#{airlineCodeController.selected.airlineName}" title="#{bundle.EditAirlineCodeTitle_airlineName}" />
+                    <h:outputLabel value="#{bundle.EditAirlineCodeLabel_country}" for="country" />
+                    <h:inputText id="country" value="#{airlineCodeController.selected.country}" title="#{bundle.EditAirlineCodeTitle_country}" />
+                </h:panelGrid>
+                <h:commandLink action="#{airlineCodeController.update}" value="#{bundle.EditAirlineCodeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAirlineCodeViewLink}"/>
+                <br />
+                <h:commandLink action="#{airlineCodeController.prepareList}" value="#{bundle.EditAirlineCodeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAirlineCodeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

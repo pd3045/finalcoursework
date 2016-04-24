@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePassangerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_passangerCode}" for="passangerCode" />
+                    <h:inputText id="passangerCode" value="#{passangerController.selected.passangerCode}" title="#{bundle.CreatePassangerTitle_passangerCode}" required="true" requiredMessage="#{bundle.CreatePassangerRequiredMessage_passangerCode}"/>
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{passangerController.selected.firstName}" title="#{bundle.CreatePassangerTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_middleName}" for="middleName" />
+                    <h:inputText id="middleName" value="#{passangerController.selected.middleName}" title="#{bundle.CreatePassangerTitle_middleName}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{passangerController.selected.lastName}" title="#{bundle.CreatePassangerTitle_lastName}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_houseNumber}" for="houseNumber" />
+                    <h:inputText id="houseNumber" value="#{passangerController.selected.houseNumber}" title="#{bundle.CreatePassangerTitle_houseNumber}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_streetName}" for="streetName" />
+                    <h:inputText id="streetName" value="#{passangerController.selected.streetName}" title="#{bundle.CreatePassangerTitle_streetName}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{passangerController.selected.city}" title="#{bundle.CreatePassangerTitle_city}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_country}" for="country" />
+                    <h:inputText id="country" value="#{passangerController.selected.country}" title="#{bundle.CreatePassangerTitle_country}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{passangerController.selected.email}" title="#{bundle.CreatePassangerTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_role}" for="role" />
+                    <h:inputText id="role" value="#{passangerController.selected.role}" title="#{bundle.CreatePassangerTitle_role}" required="true" requiredMessage="#{bundle.CreatePassangerRequiredMessage_role}"/>
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_loginId}" for="loginId" />
+                    <h:inputText id="loginId" value="#{passangerController.selected.loginId}" title="#{bundle.CreatePassangerTitle_loginId}" />
+                    <h:outputLabel value="#{bundle.CreatePassangerLabel_creditCardRef}" for="creditCardRef" />
+                    <h:selectOneMenu id="creditCardRef" value="#{passangerController.selected.creditCardRef}" title="#{bundle.CreatePassangerTitle_creditCardRef}" >
+                        <f:selectItems value="#{creditCardDetailsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{passangerController.create}" value="#{bundle.CreatePassangerSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{passangerController.prepareList}" value="#{bundle.CreatePassangerShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePassangerIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

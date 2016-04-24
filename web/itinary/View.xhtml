@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewItinaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewItinaryLabel_itinaryNumber}"/>
+                    <h:outputText value="#{itinaryController.selected.itinaryNumber}" title="#{bundle.ViewItinaryTitle_itinaryNumber}"/>
+                    <h:outputText value="#{bundle.ViewItinaryLabel_itinaryStatus}"/>
+                    <h:outputText value="#{itinaryController.selected.itinaryStatus}" title="#{bundle.ViewItinaryTitle_itinaryStatus}"/>
+                    <h:outputText value="#{bundle.ViewItinaryLabel_passangerCode}"/>
+                    <h:outputText value="#{itinaryController.selected.passangerCode}" title="#{bundle.ViewItinaryTitle_passangerCode}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{itinaryController.destroyAndView}" value="#{bundle.ViewItinaryDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewItinaryEditLink}"/>
+                <br />
+                <h:commandLink action="#{itinaryController.prepareCreate}" value="#{bundle.ViewItinaryCreateLink}" />
+                <br />
+                <h:commandLink action="#{itinaryController.prepareList}" value="#{bundle.ViewItinaryShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewItinaryIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

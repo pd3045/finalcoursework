@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFlightsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_flightNumber}" for="flightNumber" />
+                    <h:inputText id="flightNumber" value="#{flightsController.selected.flightNumber}" title="#{bundle.EditFlightsTitle_flightNumber}" required="true" requiredMessage="#{bundle.EditFlightsRequiredMessage_flightNumber}"/>
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_departureDay}" for="departureDay" />
+                    <h:inputText id="departureDay" value="#{flightsController.selected.departureDay}" title="#{bundle.EditFlightsTitle_departureDay}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_departureTime}" for="departureTime" />
+                    <h:inputText id="departureTime" value="#{flightsController.selected.departureTime}" title="#{bundle.EditFlightsTitle_departureTime}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_arrivalDate}" for="arrivalDate" />
+                    <h:inputText id="arrivalDate" value="#{flightsController.selected.arrivalDate}" title="#{bundle.EditFlightsTitle_arrivalDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_arrivalTime}" for="arrivalTime" />
+                    <h:inputText id="arrivalTime" value="#{flightsController.selected.arrivalTime}" title="#{bundle.EditFlightsTitle_arrivalTime}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_economySeatsAvailable}" for="economySeatsAvailable" />
+                    <h:inputText id="economySeatsAvailable" value="#{flightsController.selected.economySeatsAvailable}" title="#{bundle.EditFlightsTitle_economySeatsAvailable}" />
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_businessSeatsAvailable}" for="businessSeatsAvailable" />
+                    <h:inputText id="businessSeatsAvailable" value="#{flightsController.selected.businessSeatsAvailable}" title="#{bundle.EditFlightsTitle_businessSeatsAvailable}" />
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_economyPriceOneway}" for="economyPriceOneway" />
+                    <h:inputText id="economyPriceOneway" value="#{flightsController.selected.economyPriceOneway}" title="#{bundle.EditFlightsTitle_economyPriceOneway}" />
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_economyPriceReturn}" for="economyPriceReturn" />
+                    <h:inputText id="economyPriceReturn" value="#{flightsController.selected.economyPriceReturn}" title="#{bundle.EditFlightsTitle_economyPriceReturn}" />
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_businessPriceOneway}" for="businessPriceOneway" />
+                    <h:inputText id="businessPriceOneway" value="#{flightsController.selected.businessPriceOneway}" title="#{bundle.EditFlightsTitle_businessPriceOneway}" />
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_businessPriceReturn}" for="businessPriceReturn" />
+                    <h:inputText id="businessPriceReturn" value="#{flightsController.selected.businessPriceReturn}" title="#{bundle.EditFlightsTitle_businessPriceReturn}" />
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_routeId}" for="routeId" />
+                    <h:selectOneMenu id="routeId" value="#{flightsController.selected.routeId}" title="#{bundle.EditFlightsTitle_routeId}" >
+                        <f:selectItems value="#{airlineRouteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFlightsLabel_flightStatus}" for="flightStatus" />
+                    <h:selectOneMenu id="flightStatus" value="#{flightsController.selected.flightStatus}" title="#{bundle.EditFlightsTitle_flightStatus}" >
+                        <f:selectItems value="#{flightStatusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{flightsController.update}" value="#{bundle.EditFlightsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFlightsViewLink}"/>
+                <br />
+                <h:commandLink action="#{flightsController.prepareList}" value="#{bundle.EditFlightsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFlightsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

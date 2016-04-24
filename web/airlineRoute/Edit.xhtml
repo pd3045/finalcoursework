@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAirlineRouteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAirlineRouteLabel_routeId}" for="routeId" />
+                    <h:inputText id="routeId" value="#{airlineRouteController.selected.routeId}" title="#{bundle.EditAirlineRouteTitle_routeId}" required="true" requiredMessage="#{bundle.EditAirlineRouteRequiredMessage_routeId}"/>
+                    <h:outputLabel value="#{bundle.EditAirlineRouteLabel_numberOfStops}" for="numberOfStops" />
+                    <h:inputText id="numberOfStops" value="#{airlineRouteController.selected.numberOfStops}" title="#{bundle.EditAirlineRouteTitle_numberOfStops}" />
+                    <h:outputLabel value="#{bundle.EditAirlineRouteLabel_direct}" for="direct" />
+                    <h:inputText id="direct" value="#{airlineRouteController.selected.direct}" title="#{bundle.EditAirlineRouteTitle_direct}" />
+                    <h:outputLabel value="#{bundle.EditAirlineRouteLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{airlineRouteController.selected.description}" title="#{bundle.EditAirlineRouteTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditAirlineRouteLabel_airlineCode}" for="airlineCode" />
+                    <h:selectOneMenu id="airlineCode" value="#{airlineRouteController.selected.airlineCode}" title="#{bundle.EditAirlineRouteTitle_airlineCode}" >
+                        <f:selectItems value="#{airlineCodeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAirlineRouteLabel_departureAirportCode}" for="departureAirportCode" />
+                    <h:selectOneMenu id="departureAirportCode" value="#{airlineRouteController.selected.departureAirportCode}" title="#{bundle.EditAirlineRouteTitle_departureAirportCode}" >
+                        <f:selectItems value="#{airportLocationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAirlineRouteLabel_arrivalAirportCode}" for="arrivalAirportCode" />
+                    <h:selectOneMenu id="arrivalAirportCode" value="#{airlineRouteController.selected.arrivalAirportCode}" title="#{bundle.EditAirlineRouteTitle_arrivalAirportCode}" >
+                        <f:selectItems value="#{airportLocationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{airlineRouteController.update}" value="#{bundle.EditAirlineRouteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAirlineRouteViewLink}"/>
+                <br />
+                <h:commandLink action="#{airlineRouteController.prepareList}" value="#{bundle.EditAirlineRouteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAirlineRouteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

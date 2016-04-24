@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCreditCardDetailsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCreditCardDetailsLabel_cardReferenceNumber}"/>
+                    <h:outputText value="#{creditCardDetailsController.selected.cardReferenceNumber}" title="#{bundle.ViewCreditCardDetailsTitle_cardReferenceNumber}"/>
+                    <h:outputText value="#{bundle.ViewCreditCardDetailsLabel_cardNumber}"/>
+                    <h:outputText value="#{creditCardDetailsController.selected.cardNumber}" title="#{bundle.ViewCreditCardDetailsTitle_cardNumber}"/>
+                    <h:outputText value="#{bundle.ViewCreditCardDetailsLabel_expiryDate}"/>
+                    <h:outputText value="#{creditCardDetailsController.selected.expiryDate}" title="#{bundle.ViewCreditCardDetailsTitle_expiryDate}"/>
+                    <h:outputText value="#{bundle.ViewCreditCardDetailsLabel_valid}"/>
+                    <h:outputText value="#{creditCardDetailsController.selected.valid}" title="#{bundle.ViewCreditCardDetailsTitle_valid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{creditCardDetailsController.destroyAndView}" value="#{bundle.ViewCreditCardDetailsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCreditCardDetailsEditLink}"/>
+                <br />
+                <h:commandLink action="#{creditCardDetailsController.prepareCreate}" value="#{bundle.ViewCreditCardDetailsCreateLink}" />
+                <br />
+                <h:commandLink action="#{creditCardDetailsController.prepareList}" value="#{bundle.ViewCreditCardDetailsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCreditCardDetailsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

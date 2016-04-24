@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFlightsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFlightsEmpty}" rendered="#{flightsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{flightsController.items.rowCount > 0}">
+                    <h:outputText value="#{flightsController.pagination.pageFirstItem + 1}..#{flightsController.pagination.pageLastItem + 1}/#{flightsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{flightsController.previous}" value="#{bundle.Previous} #{flightsController.pagination.pageSize}" rendered="#{flightsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{flightsController.next}" value="#{bundle.Next} #{flightsController.pagination.pageSize}" rendered="#{flightsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{flightsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_flightNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.flightNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_departureDay}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.departureDay}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_departureTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.departureTime}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_arrivalDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.arrivalDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_arrivalTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.arrivalTime}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_economySeatsAvailable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.economySeatsAvailable}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_businessSeatsAvailable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.businessSeatsAvailable}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_economyPriceOneway}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.economyPriceOneway}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_economyPriceReturn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.economyPriceReturn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_businessPriceOneway}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.businessPriceOneway}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_businessPriceReturn}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.businessPriceReturn}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_routeId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.routeId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFlightsTitle_flightStatus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.flightStatus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{flightsController.prepareView}" value="#{bundle.ListFlightsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{flightsController.prepareEdit}" value="#{bundle.ListFlightsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{flightsController.destroy}" value="#{bundle.ListFlightsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{flightsController.prepareCreate}" value="#{bundle.ListFlightsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFlightsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
